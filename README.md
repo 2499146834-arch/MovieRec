@@ -8,12 +8,6 @@ A comprehensive movie recommendation system with collaborative filtering and Z-s
 
 **Dataset**: MovieLens 1M — 6,040 users · 3,706 movies · 1,000,209 ratings (99.98% sparsity)
 
-## 👥 Team
-
-Qijing Ouyang · Peilun Yang · Yunfeng Shi · Jieyao Pang · Zhipeng Lyu · Sijun Yang · Qijing Feng
-
-MSc Data Science, Lingnan University, Hong Kong
-
 ---
 
 ## 🏆 Key Results
@@ -65,11 +59,11 @@ python app/fetch_trailers.py
 
 | Page | Route | Description |
 |------|-------|-------------|
-| Home | `/` | Hero banner, hot picks, genre rows |
+| Home | `/` | Hero banner, hot picks, genre rows with horizontal scrolling |
 | Browse | `/browse` | Search, filter by genre, sort, paginate |
-| Recs | `/recs` | Personalized CF recommendations with algo switching |
+| Recs | `/recs` | Personalized CF recommendations with algorithm switching |
 | Player | `/player/<id>` | Movie detail + YouTube trailer embed or search fallback |
-| Experiment | `/experiment` | Full evaluation dashboard with MAE/RMSE/rank tables |
+| Experiment | `/experiment` | Full evaluation dashboard with MAE/RMSE tables |
 
 ---
 
@@ -121,11 +115,11 @@ MovieRec/
 
 **Z-Score Standardization**: $z_{ui} = \frac{r_{ui} - \mu_u}{\sigma_u}$ — normalizes each user's ratings to zero mean and unit variance, eliminating individual rating bias and improving MAE by 9–10%.
 
-**Baselines**: GlobalMean, UserMean, ItemMean, MostPopular for comparison.
+**Baselines**: GlobalMean, UserMean, ItemMean, MostPopular.
 
 ## 📊 Visualizations
 
-12 matplotlib figures covering: rating distribution, sparsity analysis, error distributions, actual vs predicted scatter, algorithm radar comparison, hyperparameter sensitivity, diversity analysis, Z-score improvement heatmap, time comparison, rating behavior, and cold-start analysis.
+12 matplotlib figures: rating distribution, sparsity analysis, error distributions, actual vs predicted scatter, algorithm radar comparison, hyperparameter sensitivity, diversity analysis, Z-score improvement heatmap, time comparison, rating behavior, and cold-start analysis.
 
 ## 📄 Dataset
 
