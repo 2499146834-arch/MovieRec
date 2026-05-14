@@ -4,9 +4,9 @@
 [![Flask](https://img.shields.io/badge/flask-3.0+-green.svg)](https://flask.palletsprojects.com/)
 [![License](https://img.shields.io/badge/license-Academic-orange.svg)]()
 
-A comprehensive movie recommendation system built on collaborative filtering with Z-score standardization optimization. Features a full-stack Flask web application with Netflix-style UI, interactive recommendation generation, and experiment evaluation dashboards.
+A comprehensive movie recommendation system with collaborative filtering and Z-score standardization. Features a Flask SSR web app with Netflix-style UI, interactive recommendations, and experiment dashboards.
 
-**Dataset**: MovieLens 1M — 6,040 users · 3,706 movies · 1,000,209 ratings · 99.98% matrix sparsity
+**Dataset**: MovieLens 1M — 6,040 users · 3,706 movies · 1,000,209 ratings (99.98% sparsity)
 
 ## 👥 Team
 
@@ -35,82 +35,51 @@ MSc Data Science, Lingnan University, Hong Kong
 |-------|-------------|-----------|
 | User-CF (cosine) | 0.0860 | 0.0541 |
 | User-CF (cosine, Z) | 0.0810 | 0.0428 |
-| User-CF (pearson, Z) | 0.0710 | 0.0343 |
 | Item-CF (cosine, Z) | 0.0670 | 0.0249 |
 
-### Key Findings
-
-- Z-score standardization improves User-CF by **+9.3%** and Item-CF by **+9.6%** in MAE
-- User-CF (cosine, Z) achieves the best overall accuracy (MAE = 0.7018)
-- Item-CF produces more diverse recommendations (+92% genre diversity vs User-CF)
-- All improvements statistically significant at **p < 0.01**
+- Z-score standardization: **+9.3%** User-CF, **+9.6%** Item-CF (MAE)
+- Item-CF produces **92% more diverse** recommendations than User-CF
+- All improvements significant at **p < 0.01**
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisites
-
 ```bash
 pip install flask numpy pandas scipy scikit-learn
+python app/precompute.py          # Generate recommendation data
+python app/server_render.py       # Start web server
 ```
 
-### 1. Precompute Data
+Open **http://127.0.0.1:8520** · Windows: double-click `app/启动MovieRec.bat`
 
 ```bash
-cd app
-python precompute.py
+# Optional: Download movie posters & trailers (needs TMDB API key)
+python app/fetch_posters.py
+python app/fetch_trailers.py
 ```
-
-This generates `static/app_data.json` — the precomputed recommendation and evaluation data.
-
-### 2. Launch Web App
-
-```bash
-python app/server_render.py
-```
-
-The app opens at **http://127.0.0.1:8520**.
-
-On Windows, double-click `app/启动MovieRec.bat`.
-
-### 3. (Optional) Download Movie Posters & Trailers
-
-```bash
-python app/fetch_posters.py    # Download posters + backdrops from TMDB (~2800 movies)
-python app/fetch_trailers.py   # Fetch YouTube trailer IDs from TMDB (~1200 movies)
-```
-
-> **Note**: This requires a TMDB API key. The default key in the script works for ~40 requests/10s. Posters are saved to `app/static/posters/` (gitignored).
 
 ---
 
-## 🌐 Web App Pages
+## 🌐 Web App
 
 | Page | Route | Description |
 |------|-------|-------------|
-| 🏠 Home | `/` | Netflix-style hero banner, hot picks, genre rows with horizontal scrolling |
-| 🔍 Browse | `/browse` | Full movie library with search, genre filter, and sort (popularity/year/title) |
-| ✨ Recommendations | `/recs` | Personalized recommendations with algorithm switching and user navigation |
-| 🎥 Player | `/player/<id>` | Movie detail with embedded YouTube trailer or search fallback, similar movies |
-| 📊 Experiment | `/experiment` | Full experiment dashboard with MAE/RMSE tables and significance tests |
+| Home | `/` | Hero banner, hot picks, genre rows |
+| Browse | `/browse` | Search, filter by genre, sort, paginate |
+| Recs | `/recs` | Personalized CF recommendations with algo switching |
+| Player | `/player/<id>` | Movie detail + YouTube trailer embed or search fallback |
+| Experiment | `/experiment` | Full evaluation dashboard with MAE/RMSE/rank tables |
 
 ---
 
-## 🧪 Run Experiments
+## 🧪 Experiments
 
 ```bash
-# Run all experiments (CF, baselines, significance tests)
-python src/run_experiment.py
-
-# Generate improved experiment report (Word)
-python generate_report.py
-
-# Generate Chinese version
-python generate_report_cn.py
+python src/run_experiment.py           # Run all CF + baseline experiments
+python scripts/generate_report.py      # Generate improved Word report (EN)
+python scripts/generate_report_cn.py   # Generate Chinese version
 ```
-
-Results are saved to `results/` directory including 12 figures and `experiment_results.json`.
 
 ---
 
@@ -118,85 +87,46 @@ Results are saved to `results/` directory including 12 figures and `experiment_r
 
 ```
 MovieRec/
-├── src/                          # Core algorithm implementations
-│   ├── collaborative_filtering.py  # User-CF & Item-CF with Z-score
-│   ├── evaluation.py              # MAE, RMSE, Precision@K, Recall@K
-│   ├── data_loader.py             # MovieLens data loading & splitting
-│   ├── baselines.py               # GlobalMean, UserMean, MostPopular
-│   ├── visualization.py           # Matplotlib chart generation
-│   ├── run_experiment.py          # Main experiment runner
-│   └── config.py                  # Paths & hyperparameters
-├── data/ml-1m/                    # MovieLens 1M dataset
-├── results/                       # Experiment outputs (12 figures + JSON)
-├── app/                           # Web application
-│   ├── server_render.py           # Flask SSR server (inline CSS, zero JS deps)
-│   ├── precompute.py              # Precompute recommendations & evaluation data
-│   ├── fetch_posters.py           # TMDB poster + backdrop downloader
-│   ├── fetch_trailers.py          # YouTube trailer ID fetcher
-│   └── 启动MovieRec.bat           # Windows launcher
-├── generate_report.py             # Improved experiment report generator
-├── generate_report_cn.py          # Chinese report generator
-└── Machine Learning Project.docx  # Original project report
+├── src/                              # Core algorithms
+│   ├── collaborative_filtering.py      # User-CF & Item-CF with Z-score normalization
+│   ├── evaluation.py                  # MAE, RMSE, Precision@K, Recall@K
+│   ├── data_loader.py                 # MovieLens 1M loading & train/test split
+│   ├── baselines.py                   # GlobalMean, UserMean, ItemMean, MostPopular
+│   ├── visualization.py               # 12 matplotlib charts
+│   ├── run_experiment.py              # Main experiment pipeline
+│   └── config.py                      # Paths & hyperparameters
+├── data/ml-1m/                        # MovieLens 1M dataset
+├── results/                           # Experiment outputs (12 figures + JSON)
+├── reports/                           # Project reports
+│   ├── Machine Learning Project.docx
+│   ├── MovieRec_Improved_Experiment_Report.docx
+│   └── MovieRec_改进实验报告_中文版.docx
+├── scripts/                           # Utility scripts
+│   ├── generate_report.py
+│   └── generate_report_cn.py
+├── app/                               # Web application
+│   ├── server_render.py               # Flask SSR server (inline CSS, zero JS)
+│   ├── precompute.py                  # Data preprocessing pipeline
+│   ├── fetch_posters.py               # TMDB poster + backdrop downloader
+│   ├── fetch_trailers.py              # YouTube trailer ID fetcher
+│   └── 启动MovieRec.bat               # Windows one-click launcher
+└── README.md
 ```
 
 ---
 
-## 🔬 Algorithm Details
+## 🔬 Algorithms
 
-### Collaborative Filtering
+**Collaborative Filtering**: User-Based & Item-Based with cosine similarity and Pearson correlation, top-K neighbor selection (K=20~50).
 
-- **User-Based CF**: Find similar users via rating patterns, predict by weighted neighbor average
-- **Item-Based CF**: Precompute item-item similarities, predict by user's rated items
-- **Similarity Metrics**: Cosine similarity and Pearson correlation
-- **Neighbor Selection**: Top-K nearest neighbors (K=20~50)
+**Z-Score Standardization**: $z_{ui} = \frac{r_{ui} - \mu_u}{\sigma_u}$ — normalizes each user's ratings to zero mean and unit variance, eliminating individual rating bias and improving MAE by 9–10%.
 
-### Z-Score Standardization
+**Baselines**: GlobalMean, UserMean, ItemMean, MostPopular for comparison.
 
-Raw ratings are transformed to account for individual user rating bias:
+## 📊 Visualizations
 
-$$z_{ui} = \frac{r_{ui} - \mu_u}{\sigma_u}$$
-
-This normalizes each user's ratings to zero mean and unit variance, making cross-user comparisons meaningful.
-
-### Baselines
-
-- **GlobalMean**: Predict global average rating for all items
-- **UserMean**: Predict user's personal average rating
-- **ItemMean**: Predict item's average rating
-- **MostPopular**: Recommend most-rated items to everyone
-
----
-
-## 📊 Visualizations Generated
-
-1. Rating distribution histogram
-2. User-item matrix sparsity pie chart
-3. Prediction error distribution (User-CF vs Item-CF)
-4. Actual vs predicted ratings scatter plots
-5. Algorithm strengths & weaknesses radar chart
-6. Model comparison MAE bar chart
-7. Hyperparameter sensitivity (K values)
-8. Recommendation diversity comparison
-9. Z-score improvement heatmap
-10. Computation time comparison
-11. User rating behavior analysis
-12. Cold-start risk analysis
-
----
+12 matplotlib figures covering: rating distribution, sparsity analysis, error distributions, actual vs predicted scatter, algorithm radar comparison, hyperparameter sensitivity, diversity analysis, Z-score improvement heatmap, time comparison, rating behavior, and cold-start analysis.
 
 ## 📄 Dataset
 
-[MovieLens 1M](https://grouplens.org/datasets/movielens/1m/) — a benchmark dataset for collaborative filtering research:
-
-- 6,040 users with demographic info
-- 3,706 movies with genres and release years
-- 1,000,209 ratings on a 1–5 scale
-- 99.98% matrix sparsity (only 0.02% of possible ratings observed)
-
-Used under [GroupLens terms of use](https://files.grouplens.org/datasets/movielens/ml-1m-README.txt).
-
----
-
-## 📝 License
-
-This project is created for academic purposes as part of the MSc Data Science program at Lingnan University.
+[MovieLens 1M](https://grouplens.org/datasets/movielens/1m/) · Used under [GroupLens terms](https://files.grouplens.org/datasets/movielens/ml-1m-README.txt).
