@@ -124,3 +124,7 @@ MovieRec/
 ## 📄 Dataset
 
 [MovieLens 1M](https://grouplens.org/datasets/movielens/1m/) · Used under [GroupLens terms](https://files.grouplens.org/datasets/movielens/ml-1m-README.txt).
+
+---
+
+> **Original group project**: [currysc3/Group-Assignment----Machine-Pioneer](https://github.com/currysc3/Group-Assignment----Machine-Pioneer) — this repository builds upon the original collaborative filtering implementation with improved experiments, Z-score optimization, a redesigned Flask SSR web app, and comprehensive evaluation dashboards.
