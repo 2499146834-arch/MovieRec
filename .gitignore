@@ -1,0 +1,16 @@
+# Poster images (downloaded via fetch_posters.py)
+app/static/posters/
+app/static/poster_cache.json
+app/static/trailer_cache.json
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store

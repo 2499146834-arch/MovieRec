@@ -1,0 +1,216 @@
+{
+  "data_statistics": {
+    "n_users": 6040,
+    "n_movies": 3706,
+    "n_ratings": 1000209,
+    "total_possible_pairs": 22384240,
+    "sparsity_pct": 95.5316,
+    "observed_pct": 4.4684,
+    "avg_ratings_per_user": 165.5975,
+    "median_ratings_per_user": 96.0,
+    "min_ratings_per_user": "20",
+    "max_ratings_per_user": "2314",
+    "rating_mean": 3.5816,
+    "rating_std": 1.1171,
+    "rating_skew": -0.5536
+  },
+  "rating_prediction_results": {
+    "GlobalMean": {
+      "mae": 0.9449,
+      "rmse": 1.148,
+      "predict_time_s": 0.0
+    },
+    "UserMean": {
+      "mae": 0.8499,
+      "rmse": 1.0751,
+      "predict_time_s": 0.0
+    },
+    "ItemMean": {
+      "mae": 0.7871,
+      "rmse": 0.9898,
+      "predict_time_s": 0.0
+    },
+    "MostPopular": {
+      "mae": 0.7871,
+      "rmse": 0.9898,
+      "predict_time_s": 0.0
+    },
+    "User-CF (cosine)": {
+      "mae": 0.7737,
+      "rmse": 0.9735,
+      "predict_time_s": 3.41
+    },
+    "User-CF (cosine, Z)": {
+      "mae": 0.7018,
+      "rmse": 0.9066,
+      "predict_time_s": 3.46
+    },
+    "User-CF (pearson)": {
+      "mae": 0.764,
+      "rmse": 0.9594,
+      "predict_time_s": 3.38
+    },
+    "User-CF (pearson, Z)": {
+      "mae": 0.7237,
+      "rmse": 0.9326,
+      "predict_time_s": 3.39
+    },
+    "Item-CF (cosine)": {
+      "mae": 0.7904,
+      "rmse": 1.0169,
+      "predict_time_s": 2.46
+    },
+    "Item-CF (cosine, Z)": {
+      "mae": 0.7146,
+      "rmse": 0.9171,
+      "predict_time_s": 2.51
+    },
+    "Item-CF (pearson)": {
+      "mae": 0.7503,
+      "rmse": 0.9594,
+      "predict_time_s": 2.47
+    },
+    "Item-CF (pearson, Z)": {
+      "mae": 0.7724,
+      "rmse": 0.9905,
+      "predict_time_s": 2.5
+    }
+  },
+  "ranking_results": {
+    "MostPopular": {
+      "precision@10": 0.0,
+      "recall@10": 0.0,
+      "hit_count": 0,
+      "total_relevant": 0,
+      "users_with_relevant": 100,
+      "total_recommendations": 0,
+      "time_s": 0.01
+    },
+    "User-CF (cosine)": {
+      "precision@10": 0.086,
+      "recall@10": 0.0541,
+      "hit_count": 86,
+      "total_relevant": 1899,
+      "users_with_relevant": 98,
+      "total_recommendations": 980,
+      "time_s": 27.54
+    },
+    "User-CF (cosine, Z)": {
+      "precision@10": 0.081,
+      "recall@10": 0.0428,
+      "hit_count": 81,
+      "total_relevant": 1899,
+      "users_with_relevant": 98,
+      "total_recommendations": 980,
+      "time_s": 28.27
+    },
+    "User-CF (pearson)": {
+      "precision@10": 0.075,
+      "recall@10": 0.0402,
+      "hit_count": 75,
+      "total_relevant": 1899,
+      "users_with_relevant": 98,
+      "total_recommendations": 980,
+      "time_s": 27.43
+    },
+    "User-CF (pearson, Z)": {
+      "precision@10": 0.071,
+      "recall@10": 0.0343,
+      "hit_count": 71,
+      "total_relevant": 1899,
+      "users_with_relevant": 98,
+      "total_recommendations": 980,
+      "time_s": 28.14
+    },
+    "Item-CF (cosine)": {
+      "precision@10": 0.048,
+      "recall@10": 0.0284,
+      "hit_count": 48,
+      "total_relevant": 1899,
+      "users_with_relevant": 98,
+      "total_recommendations": 980,
+      "time_s": 0.23
+    },
+    "Item-CF (cosine, Z)": {
+      "precision@10": 0.067,
+      "recall@10": 0.0249,
+      "hit_count": 67,
+      "total_relevant": 1899,
+      "users_with_relevant": 98,
+      "total_recommendations": 980,
+      "time_s": 0.23
+    },
+    "Item-CF (pearson)": {
+      "precision@10": 0.069,
+      "recall@10": 0.0327,
+      "hit_count": 69,
+      "total_relevant": 1899,
+      "users_with_relevant": 98,
+      "total_recommendations": 980,
+      "time_s": 0.23
+    },
+    "Item-CF (pearson, Z)": {
+      "precision@10": 0.067,
+      "recall@10": 0.0304,
+      "hit_count": 67,
+      "total_relevant": 1899,
+      "users_with_relevant": 98,
+      "total_recommendations": 980,
+      "time_s": 0.23
+    }
+  },
+  "significance_tests": {
+    "User-CF: Original vs Z-score": {
+      "t_statistic": 24.8418,
+      "p_value": 0.0,
+      "significant_05": true,
+      "significant_01": true,
+      "mean_diff": 0.0625
+    },
+    "User-CF (pearson): Original vs Z-score": {
+      "t_statistic": 12.7521,
+      "p_value": 0.0,
+      "significant_05": true,
+      "significant_01": true,
+      "mean_diff": 0.0334
+    },
+    "Item-CF: Original vs Z-score": {
+      "t_statistic": 38.1633,
+      "p_value": 0.0,
+      "significant_05": true,
+      "significant_01": true,
+      "mean_diff": 0.0697
+    },
+    "Item-CF (pearson): Original vs Z-score": {
+      "t_statistic": -16.6064,
+      "p_value": 0.0,
+      "significant_05": true,
+      "significant_01": true,
+      "mean_diff": -0.0146
+    },
+    "User-CF vs Item-CF (cosine)": {
+      "t_statistic": -6.4964,
+      "p_value": 0.0,
+      "significant_05": true,
+      "significant_01": true,
+      "mean_diff": -0.0209
+    },
+    "User-CF vs Item-CF with Z-score": {
+      "t_statistic": -8.9508,
+      "p_value": 0.0,
+      "significant_05": true,
+      "significant_01": true,
+      "mean_diff": -0.0136
+    }
+  },
+  "zscore_improvements": {
+    "User-CF": {
+      "mae": 5.3,
+      "rmse": 2.8
+    },
+    "Item-CF": {
+      "mae": -2.9,
+      "rmse": -3.2
+    }
+  }
+}
