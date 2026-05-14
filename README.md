@@ -127,4 +127,4 @@ MovieRec/
 
 ---
 
-> **Original group project**: [currysc3/Group-Assignment----Machine-Pioneer](https://github.com/currysc3/Group-Assignment----Machine-Pioneer) — this repository builds upon the original collaborative filtering implementation with improved experiments, Z-score optimization, a redesigned Flask SSR web app, and comprehensive evaluation dashboards.
+> **Original group project**: [currysc3/Group-Assignment----Machine-Pioneers](https://github.com/currysc3/Group-Assignment----Machine-Pioneers) — this repository builds upon the original collaborative filtering implementation with improved experiments, Z-score optimization, a redesigned Flask SSR web app, and comprehensive evaluation dashboards.
