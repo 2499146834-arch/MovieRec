@@ -8,6 +8,10 @@ A comprehensive movie recommendation system with collaborative filtering and Z-s
 
 **Dataset**: MovieLens 1M — 6,040 users · 3,706 movies · 1,000,209 ratings (99.98% sparsity)
 
+## Demo Video
+
+[Watch the demo on YouTube](https://youtu.be/u3T7u9uceHw)
+
 ---
 
 ## 🏆 Key Results
